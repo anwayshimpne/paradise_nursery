@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, selectCartItems } from '../redux/CartSlice.jsx';
+import { addItem, selectCartItems } from '../redux/CartSlice.jsx';
 import { categories } from '../data/plants.js';
 
 export default function ProductList() {
@@ -26,7 +26,7 @@ export default function ProductList() {
                   <div className="plant-card-body">
                     <div className="plant-card-title"><h3>{plant.name}</h3><span className="plant-price">${plant.price.toFixed(2)}</span></div>
                     <p>{plant.detail}</p>
-                    <button className={`button add-button${added ? ' is-added' : ''}`} type="button" disabled={added} onClick={() => dispatch(addToCart(plant))}>
+                    <button className={`button add-button${added ? ' is-added' : ''}`} type="button" disabled={added} onClick={() => dispatch(addItem(plant))}>
                       {added ? 'Added to Cart ✓' : 'Add to Cart'}
                     </button>
                   </div>

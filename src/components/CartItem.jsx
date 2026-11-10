@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { removeFromCart, selectCartItems, selectCartTotal, updateQuantity } from '../redux/CartSlice.jsx';
+import { removeItem, selectCartItems, selectCartTotal, updateQuantity } from '../redux/CartSlice.jsx';
 
 const currency = (amount) => `$${amount.toFixed(2)}`;
 
@@ -22,7 +22,7 @@ export default function CartItem() {
             {items.map((item) => (
               <article className="cart-row" key={item.id}>
                 <img className="cart-item-image" src={item.image} alt={item.name} />
-                <div className="cart-item-info"><h2>{item.name}</h2><p>Unit price: {currency(item.price)}</p><button className="text-button remove-button" type="button" onClick={() => dispatch(removeFromCart(item.id))}>Remove</button></div>
+                <div className="cart-item-info"><h2>{item.name}</h2><p>Unit price: {currency(item.price)}</p><button className="text-button remove-button" type="button" onClick={() => dispatch(removeItem(item.id))}>Remove</button></div>
                 <div className="quantity-control" aria-label={`Quantity for ${item.name}`}>
                   <button type="button" aria-label={`Decrease ${item.name} quantity`} disabled={item.quantity <= 1} onClick={() => dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }))}>−</button>
                   <span aria-live="polite">{item.quantity}</span>
